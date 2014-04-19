@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:"en-us" }}" {% if LANGUAGE_BIDI %}dir="rtl"{% endif %}>
+<head>
+<title>{% block title %}{% endblock %}</title>
+<!-- Bootstrap -->
+<link href="/static/css/bootstrap.css" rel="stylesheet" media="screen">
+<link href="/static/css/css.css" rel="stylesheet" media="screen">
+
+{% block extrastyle %}{% endblock %}
+{% block extrahead %}{% endblock %}
+{% block blockbots %}<meta name="robots" content="NONE,NOARCHIVE" />{% endblock %}
+
+</head>
+
+<body>
+<div class="container">
+    <div class="page-header">
+        <h1 id="site-name">Diff工具平台</h1>
+    </div>
+
+    {% block content %}
+
+    {{ content }}
+
+    {% endblock %}
+
+    {% block footer %}<div id="footer"></div>{% endblock %}
+</div>
+</body>
+</html>

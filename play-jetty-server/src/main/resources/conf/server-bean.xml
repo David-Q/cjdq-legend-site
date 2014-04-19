@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:hz="http://www.hazelcast.com/schema/spring"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+                http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		        http://www.springframework.org/schema/context
+                http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                http://www.hazelcast.com/schema/spring
+                http://www.hazelcast.com/schema/spring/hazelcast-spring-3.0.xsd">
+	<bean id="params" class="jetty.hiJetty.Params">
+		<property name="port" value="1601"></property>
+	</bean>
+
+    <bean id="searchHandler" class="jetty.hiJetty.Handler">
+    </bean>
+
+	<bean id="artsJdbcTemplate" class="org.springframework.jdbc.core.JdbcTemplate">
+        <property name="dataSource" ref="ArtsDB" />
+    </bean>
+    
+	<bean id="ArtsDB" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="com.mysql.jdbc.Driver"></property>
+		<property name="jdbcUrl" value="jdbc:mysql://localhost:3306/Arts"></property>
+		<property name="user" value="root"></property>
+		<property name="password" value="root"></property>
+		<property name="maxPoolSize" value="30"></property>
+		<property name="maxIdleTime" value="7200"></property>
+		<property name="testConnectionOnCheckin" value="true"></property>
+		<property name="idleConnectionTestPeriod" value="120"></property>
+		<property name="preferredTestQuery" value="SELECT 1"></property>
+		<property name="checkoutTimeout" value="0"></property>
+	</bean>
+	
+</beans>

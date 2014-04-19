@@ -1,0 +1,139 @@
+{% extends "base.html" %}
+
+{% block title %}条件输入{% endblock %}
+
+{% block head %}条件输入{% endblock %}
+
+{% block content %}
+<style type="text/css">
+
+  body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+  }
+
+  .form-signin {
+    max-width: 300px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  }
+  .form-signin .form-signin-heading,
+  .form-signin .checkbox {
+    margin-bottom: 10px;
+  }
+  .form-signin input[type="text"],
+  .form-signin input[type="password"] {
+    font-size: 16px;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 7px 9px;
+  }
+
+  .right.carousel-control, .left.carousel-control {
+    opacity: 0;
+    filter:alpha(opacity=0); /* IE support */
+}
+
+</style>
+<script type="text/javascript">
+//Add onload to body
+function loadDatePicker() {
+        $('#id_starttime').datetimepicker();
+        $('#id_endtime').datetimepicker();
+    }
+
+$(window).load(function(){
+    initialize({{lng}},{{lat}});
+    loadDatePicker()
+});
+</script>
+
+
+
+<form method="POST">
+<div id="Carousel" class="carousel slide" data-interval="false">
+        <ol class="carousel-indicators">
+            <li data-target="Carousel" data-slide-to="0" class="active"></li>
+            <li data-target="Carousel" data-slide-to="1"></li>
+            <li data-target="Carousel" data-slide-to="2"></li>
+        </ol>
+
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="jumbotron" style="height:1000px">
+                  <h1>你想到哪里玩？</h1>
+                  <div id="map" align="center">
+                    <div id="pos_locate" style="width:100%;">
+                    <input id="posWord" style="width:70%;" data-init-text=""  type="text" />&emsp;<button type='button' class = "btn btn-middle btn-success" onclick="findPosition()" style="height:25px;font-size:10px">定位</button>
+                    </div>
+                  <div id="map_canvas" style="width:100%;height:500px"></div>
+                 </div>
+                </div>
+            </div>
+            <div class="item">
+                <div class="jumbotron" style="height:1000px">
+                  <h1>你想什么时候去玩?</h1>
+                  
+                    <div style="margin-left:20%"> 
+                    <table>
+                      <tr>
+                      <td>
+                        <label for="id_starttime" class="control-label">开始时间：</label>
+                      {{form.starttime}}
+                      </td>
+                      <td>&emsp;&emsp;&emsp;&emsp;&emsp;</td>
+                      <td>
+                        <label for="id_endtime" class="control-label">结束时间：</label>
+                      {{form.endtime}}
+                      </td>
+                      </tr>
+                    </table><br/><br/><br/><br/><br/>
+                      
+                    </div>
+                   
+                </div>
+            </div>
+            <div class="item">
+                <div class="jumbotron" style="height:1000px">
+                  <h1>要玩得开心，请再多说几句吧？</h1>
+                  <div style="margin-left:30%"> 
+                  <h2>我是一个 {{form.afford}}<br/><br/>
+                  这次玩的时候希望吃到 {{form.eatkeyword}} <br/><br/>
+                  这次玩要有 {{form.playkeyword}} 的娱乐活动</h2>
+                  </div>
+                  <br/><br/>
+                  <button style="width:500px; height：80px;margin-left:30%; font-size:30px" class="btn btn-large btn-primary" type="submit" name="search">别废话啦，去玩！</button>
+                </div>
+                 
+            </div>
+        </div>
+
+        <a class="left carousel-control" href="#Carousel" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#Carousel" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+
+    
+    <div style="display">
+                    <span style="font-size:40px" class="add-on" style="width:50px">经度</span>{{form.lng}} 
+                </div>
+                <div style="display">
+                    <span style="font-size:40px" class="add-on" style="width:50px">纬度</span>{{form.lat}}
+                </div>
+    
+    </form>
+
+    
+{% endblock %}

@@ -1,0 +1,109 @@
+{% extends "base.html" %}
+
+{% block title %}条件输入{% endblock %}
+
+{% block head %}条件输入{% endblock %}
+
+{% block content %}
+<style type="text/css">
+
+  body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+  }
+
+  .form-signin {
+    max-width: 300px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  }
+  .form-signin .form-signin-heading,
+  .form-signin .checkbox {
+    margin-bottom: 10px;
+  }
+  .form-signin input[type="text"],
+  .form-signin input[type="password"] {
+    font-size: 16px;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 7px 9px;
+  }
+
+  .carousel-indicators {
+  bottom:-30px;
+}
+
+</style>
+<script>
+function showRoute(index)
+{
+  $('#route'+index).popover('show');
+}
+
+function hideRoute(index)
+{
+  $('#route'+index).popover('hide');
+}
+</script>
+<div>
+{% for part in result.parts%}
+  <div class="panel panel-default col-md-12">
+    <div class="panel-heading">
+    </div>
+    <div class="panel-body" style="background:rgb(224, 224, 224)">
+    <h2>
+    <table style="border:0px solid black;border-collapse:collapse;">
+                    
+                    <tr>
+                        <td width="120px" rowspan="3"><img height="100" width="100" src="{{part.shop.pic_url}}" /></td>
+                        <td ><strong><a href="http://www.dianping.com/shop/{{ part.shop.shopid }}">{{part.shop.shopname}}<strong></td>
+                    </tr>
+                    <tr><td><font color="orange">{{part.shop.star}}</font></td></tr>
+                    <tr>
+                       <td><div style="float:left;"><font color="red">￥{{part.shop.avg_price}}</font></div></td>
+                    </tr>
+                  </table>
+                  </h2>
+    </div>
+  </div>
+  {% if not forloop.last %}
+  <div class="panel panel-default col-md-12" style="border:0">
+    <div class="panel-body">
+      <table class="table table-striped">
+        <tr>
+          <td style="width:10%"><img height="500" width="100" src='/static/img/goto.png'></td>
+          <td style="width:30%">
+            <div class="panel panel-default" id="" style="text-align: justify; height:500px " data-content="">
+                <h3>公共交通</h3>
+                <p>{% autoescape off %}{{part.transit}}{% endautoescape%}</p>
+            </div>
+          </td>
+          <td style="width:30%">
+          <div class="panel panel-default" id="" style="text-align: justify; height:500px" data-content="">
+                <h3>步行</h3>
+                <p>{% autoescape off %}{{part.walking}}{% endautoescape%}</p>
+            </div></td>
+          <td style="width:30%">
+          <div class="panel panel-default" id="" style="text-align: justify; height:500px" data-content="">
+                <h3>自驾</h3>
+                <p>{% autoescape off %}{{part.driving}}{% endautoescape%}</p>
+            </div></td>
+        </tr>
+      </table>
+      
+    </div>
+  </div>
+  {% endif %}
+ 
+{% endfor %}
+</div>
+{% endblock %}
