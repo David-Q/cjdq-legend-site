@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1.0, user-scalable=no">
+    <title>{% block title %}{% endblock %}</title>
+    {% load staticfiles %}
+    <link href="{% static 'css/bootstrap.min.css' %}" rel="stylesheet" media="screen">
+    <link href="{% static 'metro/css/metro-bootstrap.css' %}" rel="stylesheet" media="screen">
+    
+    
+    <link href="{% static 'metro/docs/css/iconFont.css' %}" rel="stylesheet" media="screen">
+    <script type="text/javascript" src="{% static 'js/jquery.min.js' %} "></script>
+    <script type="text/javascript" src="{% static 'js/jquery-ui.min.js' %} "></script>
+    <script type="text/javascript" src="{% static 'js/bootstrap.min.js' %} "></script>
+    <script type="text/javascript" src="{% static 'metro/min/metro.min.js' %} "></script>
+    <script type="text/javascript" src="{% static 'metro/js/metro-scroll.js' %} "></script>
+    
+    <script type="text/javascript">
+    $(function () {
+        $("html").css("opacity","0");
+        $("html").animate({opacity: 1}, 300);
+        $("a").click(function() {
+            var _this = $(this);
+            var href = _this.attr("href");
+            if(href.indexOf('#') == 0)
+            {
+                return;
+            }
+            $("html").animate({opacity: 0}, 300,function () {
+                window.location.href = _this.attr("href");
+            });
+            return false
+        });
+    })
+    </script>
+  </head>
+  <body class="metro" style="background: url(/static/img/blue.jpg);background-color:#1D1D1D;width:99%">
+  <!--div style="margin-top:-1%;background: url() top left no-repeat; background-size: cover; height: 100px;"><h1 style="color:orange" font-family="arial" ><span class="icon-switch"></span>    CJDQ-BLOG</h1></div-->
+  <div class="span2 affix">
+
+  <div class="tile-group three">
+  <h1 style="color:orange;margin-top:-10%" font-family="arial" >CJDQ-BLOG</h1>
+  <br/><br/><br/><br/><br/>
+
+                            <div class="tile-content image">
+                                <img src="/static/img/photolarge.jpg" data-src="js/holder/holder.js/240x240" alt="240x240" style="width: 240px; height: 240px; ">
+                            </div>
+                            <h2 style="color:white">David Qiu</h2><br/>
+                            <a class="tile double bg-darkGreen" data-click="transform"  data-toggle="modal" data-target="#myModal">
+                                <div class="tile-content icon">
+                                    <span class="icon-mail"></span>
+                                </div>
+                                <div class="brand">
+                                    <div class="label"><h3>Say Somthing</h3></div>
+                                </div>
+                            </a>
+                            
+                        </div>
+</div>
+
+
+<div class="grid fluid" style="height:50%">
+    <div class="row">
+        <div class="span4"></div>
+        <div class="span8" style="height:50%">
+                        {% block content %}
+                        {{ content }}
+                        {% endblock %}
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="button close" data-dismiss="modal" aria-hidden="true">&times;</button>
+        <h4 class="modal-title" id="myModalLabel">say something to me</h4>
+      </div>
+      <div class="modal-body">
+        <p>您想和我说什么？</p><br/>
+        <div class="input-control text">
+            <input type="text" value="" placeholder=""/>
+            <button class="btn-clear"></button>
+        </div>
+        <br/><br/><br/><br/>
+        <p>可以留下您的姓名或联系方式，以便得到回复</p><br/>
+        <div class="input-control text">
+            <input type="text" value="" placeholder=""/>
+            <button class="btn-clear"></button>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="button success large" data-dismiss="modal">send</button>
+      </div>
+    </div><!-- /.modal-content>
+  </div><!-- /.modal-dialog -->
+</div><!-- /.modal -->
+
+
+      {% block footer %}<div id="footer"></div>{% endblock %}
+  </body>
+</html>

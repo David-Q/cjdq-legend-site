@@ -1,0 +1,31 @@
+table {
+    width: 100%;
+    margin-bottom: 20px;
+    border : 2px solid #03487F;
+
+}
+thead {
+    font-size: large;
+    font-weight : bold;
+}
+
+tbody td {
+    font-size : medium;
+    font-weight : normal;
+}
+
+body {
+    background : White;
+    font-family : Arial, Helvetica, sans-serif;
+    font-size : xx-small;
+}
+.odd {
+    background : #EEEEEE;
+}
+
+.even {
+    background : #C5D4E4;
+}
+.th {
+    background : #EEEEEE;
+}

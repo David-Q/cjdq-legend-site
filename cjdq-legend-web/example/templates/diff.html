@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+
+{% block head %} Diff查看 {% endblock %}
+
+{% block extrahead %}
+{% endblock %}
+
+{% block extrastyle %}
+<style type="text/css">
+input {
+    width: 80%;
+}
+</style>
+{% endblock %}
+
+{% block content %}
+    <form class="my_form" action="." method="POST">
+        {% csrf_token %}
+        <div class="diff_params">
+            <ul>
+                <li><label>Base URL: </label>{{ form.base_url }}</li>
+                <li><label>New URL: </label>{{ form.new_url }}</li>
+                <li><label>URL Postfix: </label>{{ form.query }}</li>
+                <li><button class="btn btn-small btn-primary" type="submit" name="search">提交</button></li>
+            </ul>
+        </div>
+    </form>
+    <div class="diff_content">
+        <div class="diff_result" style="float: left;">
+            {% for item in base_result %}
+            <ul>
+                {% for key, value in item.items %}
+                    <li>{{ key }}: {{ value }}</li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </div>
+
+        <div class="diff_result" style="float: right;">
+            {% for item in new_result %}
+            <ul>
+                {% for key, value in item.items %}
+                    <li>{{ key }}: {{ value }}</li>
+                {% endfor %}
+            </ul>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}

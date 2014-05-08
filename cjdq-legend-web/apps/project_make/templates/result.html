@@ -1,0 +1,211 @@
+{% extends "base.html" %}
+
+{% block title %}条件输入{% endblock %}
+
+{% block head %}条件输入{% endblock %}
+
+{% block content %}
+<style type="text/css">
+
+  body {
+    padding-top: 60px;
+    padding-bottom: 40px;
+    background-color: #f5f5f5;
+  }
+
+  .form-signin {
+    max-width: 300px;
+    padding: 19px 29px 29px;
+    margin: 0 auto 20px;
+    background-color: #fff;
+    border: 1px solid #e5e5e5;
+    -webkit-border-radius: 5px;
+       -moz-border-radius: 5px;
+            border-radius: 5px;
+    -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+       -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+            box-shadow: 0 1px 2px rgba(0,0,0,.05);
+  }
+  .form-signin .form-signin-heading,
+  .form-signin .checkbox {
+    margin-bottom: 10px;
+  }
+  .form-signin input[type="text"],
+  .form-signin input[type="password"] {
+    font-size: 16px;
+    height: auto;
+    margin-bottom: 15px;
+    padding: 7px 9px;
+  }
+
+  .carousel-indicators {
+  bottom:-50px;
+}
+
+.affix {
+  right: 0px;
+
+}
+
+</style>
+<script language="JavaScript">
+ actionChecked = [{% for action in result.actions %}0,{% endfor %}];
+ actionTypes = [{% for action in result.actions %} '{{action.action_type}}', {% endfor %}]
+ actionShops = [{% for action in result.actions %}0,{% endfor %}];
+
+ function check(index)
+ {
+      var select=$("#select"+index+"a");
+      var hand=$("#hand"+index+" a");
+      var con=$("#content"+index+"");
+      var img=$("#cim"+index+"");
+
+      var imgsrc=$(hand).attr("rel");
+        img.css({"width":"3000px","height":"3000px","opacity":"0","left":"-880px","top":"-20px"}).attr("src",imgsrc);
+        img.animate({width:'1300px',height:'1300px',left:'-100px',top:'100px',opacity:'0.6'},100).animate({width:'650px',height:'650px',left:'-100px',top:'100px',opacity:'0.6'},100).animate({width:'300px',height:'300px',left:'-100px',top:'100px',opacity:'0.6'},100).animate({width:'50px',height:'50px',left:'200px',top:'200px',opacity:'1'},50,function(){
+          //setTimeout(shake,50);
+          });
+      actionChecked[index]=1;
+ }
+
+ function uncheck(index)
+ {
+      var cancel=$("#select"+index+"b");
+      var hand=$("#hand"+index+" a");
+      var con=$("#content"+index+"");
+      var img=$("#cim"+index+"");
+
+      cancel.click(function(){
+        var imgsrc=$(hand).attr("rel");
+        imgsrc = "https://img.alipay.com/sys/ebill/share/blank.gif";
+        img.css({"width":"0px","height":"0px","opacity":"0","left":"-880px","top":"-20px"}).attr("src",imgsrc);
+        });
+      actionChecked[index]=0;
+ }
+
+function showDianping(cityid, shopid)
+{
+  var iframe = document.getElementById('frame');
+  iframe.src = 'http://www.dianping.com/search/map/keyword/'+cityid+'/0_'+shopid;
+
+  var iframe2 = document.getElementById('frame2');
+  iframe2.src = 'http://www.dianping.com/shop/'+shopid;
+
+
+}
+
+
+function make()
+{
+  itemLength = $( ".item.active" ).length;
+  for(var k = 0; k< itemLength; k++)
+  {
+    actionShops[k] = $( ".item.active" )[k].id
+  }
+
+  alert(actionChecked);
+  alert(actionTypes);
+  alert(actionShops);
+  window.location="/make?checked="+actionChecked+"&types="+actionTypes+"&shops="+actionShops;
+}
+</script>
+
+<div class="row">
+<div class="panel panel-default col-md-4">
+  <div class="panel-heading">
+    <h3 class="panel-title">{{ result.rec_title }}</h3>
+  </div>
+  <div class="panel-body" style="background:rgb(224, 224, 224)">
+    <br/>
+    {% for action in result.actions %}
+    <h3><font style="color:green">第{{ action.action_day}}天 {{ action.hour_span}} {{ action.action_name}}</font></h3>
+    <hr/>
+    <button class="btn btn-success" style="margin-left:10%; width:38%" id="select{{forloop.counter0}}a" onclick="check({{forloop.counter0}})"  >计划中加入该活动</button>
+    <button class="btn btn-danger" style="width:38%" id="select{{forloop.counter0}}b" onclick="uncheck({{forloop.counter0}})" >计划中排除该活动</button>
+    <div id="Carousel{{forloop.counter0}}" class="carousel slide" data-interval="false" >
+        <ol class="carousel-indicators">
+            {% for shop in action.shops %}
+            <li data-target="Carousel{{forloop.parentloop.counter0}}" data-slide-to="{{forloop.counter0}}" {% if forloop.first %} class="active" {% endif %} ></li>
+            {% endfor %}
+        </ol>
+
+        <div class="carousel-inner">
+        {% if action.shops %}
+            {% for shop in action.shops %}
+            <div style="margin-left:10%; height:165px" class="item {% if forloop.first %} active {% endif %}" id="{{ shop.shopid }}">
+            <h2>
+                  <table style="border:0px solid black;border-collapse:collapse;">
+                    <tr>
+                        <td width="70px" rowspan="2"><img height="100" width="100" src="{{shop.pic_url}}" /></td><td>&emsp;</td>
+                        <td colspan="2" width="300px"><div style="float:left;"><a href="http://www.dianping.com/shop/{{ shop.shopid }}">{{ shop.shopname }}</a></div>&emsp; &emsp; <font color="orange">{{shop.star}}</font></td>
+
+                    </tr>
+                    <tr>
+                       <td>&emsp;</td><td><div style="float:left;"><font color="red">￥{{shop.avg_price}}</font></div></td>
+                    </tr>
+                    <tr>
+                        <td colspan="3" width="300px">
+                        <button style="width:350px; height:30px" class="btn btn-middle btn-primary" name="search" onclick="showDianping({{shop.city_id}},{{ shop.shopid }})">去点评看看</button>
+                        </td>
+                    </tr>
+                  </table>
+            </h2>
+            </div>
+            {% endfor %}
+          {% else %}
+            <div style="margin-left:30%; height:150px" class="item active" id="{{ shop.shopid }}">
+              <h1>无结果</h1>
+            </div>
+          {% endif %}
+        </div>
+
+        <a class="left carousel-control" href="#Carousel{{forloop.counter0}}" data-slide="prev">
+            <span class="glyphicon glyphicon-chevron-left"></span>
+        </a>
+        <a class="right carousel-control" href="#Carousel{{forloop.counter0}}" data-slide="next">
+            <span class="glyphicon glyphicon-chevron-right"></span>
+        </a>
+    </div>
+
+  <div id="content{{forloop.counter0}}" style="position: absolute;margin-left:410px; margin-top:-230px;  z-index:3">
+    <img src="https://img.alipay.com/sys/ebill/share/blank.gif" id="cim{{forloop.counter0}}"/>
+                <div id="hand{{forloop.counter0}}">
+                <a href="javascript:void(0)" rel="http://t0.gstatic.com/images?q=tbn:ANd9GcRqriqLAF7L91usGXzoYGOZZ_oCbWyx_LuC5Mss099j6SlNFHf0"></a>
+                
+              </div>
+</div>
+
+<br/><br/><br/>
+<hr/><hr/>
+{% endfor %}
+
+
+  </div>
+</div>
+
+
+
+
+
+
+
+
+
+<div class="panel panel-default col-md-8 affix"> <!-- col-md-offset-8-->
+  <div class="panel-heading">
+      <iframe width="100%" height="300px"frameborder="1" id="frame2" src="http://www.dianping.com/search/map/keyword/1/0_2062015"></iframe>
+      <iframe width="100%" height="350px"frameborder="1" id="frame" src="http://www.dianping.com/shop/2062015"></iframe>
+  </div>
+  <div class="panel-body">
+      <button class = "btn btn-middle btn-success" onclick="make()" style="width:500px; height：80px;margin-left:30%; font-size:30px" >好，就这么办！</button>
+  </div>
+</div>
+</div>
+  
+
+ <script>
+ {% for action in result.actions %}check({{forloop.counter0}});{% endfor %}
+ </script>
+
+
+{% endblock %}
