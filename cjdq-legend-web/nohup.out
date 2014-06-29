@@ -97,3 +97,34 @@ spawned uWSGI worker 1 (and the only) (pid: 4952, cores: 1)
 [pid: 4952|app: 0|req: 20/20] 127.0.0.1 () {42 vars in 732 bytes} [Thu May  1 16:47:15 2014] GET / => generated 3588 bytes in 7 msecs (HTTP/1.1 200) 1 headers in 59 bytes (1 switches on core 0)
 [pid: 4952|app: 0|req: 21/21] 127.0.0.1 () {42 vars in 694 bytes} [Thu May  1 16:47:16 2014] GET /favicon.ico => generated 2472 bytes in 3 msecs (HTTP/1.1 404) 1 headers in 51 bytes (1 switches on core 0)
 [pid: 4952|app: 0|req: 22/22] 127.0.0.1 () {44 vars in 853 bytes} [Thu May  1 16:47:20 2014] GET /mmusic/static/dewplayer/dewplayer.swf?mp3=static/dewplayer/mp3/test.mp3 => generated 7529 bytes in 7 msecs (HTTP/1.1 200) 1 headers in 59 bytes (1 switches on core 0)
+[13/May/2014 21:27:50] "GET / HTTP/1.1" 200 5933
+[13/May/2014 21:27:50] "GET /static/metro/css/metro-bootstrap.css HTTP/1.1" 200 306046
+[13/May/2014 21:27:50] "GET /static/js/jquery.min.js HTTP/1.1" 200 93106
+[13/May/2014 21:27:50] "GET /static/css/bootstrap.min.css HTTP/1.1" 200 99961
+[13/May/2014 21:27:51] "GET /static/metro/min/metro.min.js HTTP/1.1" 200 90531
+[13/May/2014 21:27:51] "GET /static/js/bootstrap.min.js HTTP/1.1" 200 29110
+[13/May/2014 21:27:51] "GET /static/metro/docs/css/iconFont.css HTTP/1.1" 200 21527
+[13/May/2014 21:27:51] "GET /static/js/jquery-ui.min.js HTTP/1.1" 200 228077
+[13/May/2014 21:27:51] "GET /static/metro/js/metro-scroll.js HTTP/1.1" 200 27547
+[13/May/2014 21:27:52] "GET /static/img/blue.jpg HTTP/1.1" 200 304051
+[13/May/2014 21:27:52] "GET /static/metro/docs/fonts/iconFont.woff HTTP/1.1" 200 110540
+[13/May/2014 21:27:52] "GET /static/fonts/DXI1ORHCpsQm3Vp6mXoaTZ1r3JsPcQLi8jytr04NNhU.woff HTTP/1.1" 200 65552
+[13/May/2014 21:27:52] "GET /static/img/photolarge.jpg HTTP/1.1" 200 149288
+[13/May/2014 21:27:52] "GET /static/fonts/K88pR3goAWT7BTt32Z01mz8E0i7KZn-EPnyo3HZu7kw.woff HTTP/1.1" 200 64304
+[13/May/2014 21:27:57] "GET /mmusic HTTP/1.1" 301 0
+[13/May/2014 21:27:57] "GET /mmusic/ HTTP/1.1" 200 9609
+[13/May/2014 21:27:58] "GET /static/img/photomini.jpg HTTP/1.1" 200 2054
+[13/May/2014 21:27:58] "GET /static/dewplayer/dewplayer-bubble.swf?mp3=/static/dewplayer/mp3/test.mp3 HTTP/1.1" 200 9326
+[13/May/2014 21:28:05] "GET /static/dewplayer/dewplayer-playlist.swf HTTP/1.1" 200 11261
+[13/May/2014 21:28:05] "GET /static/dewplayer/playlist.xml HTTP/1.1" 200 2050
+[13/May/2014 21:28:10] "GET / HTTP/1.1" 200 5933
+[13/May/2014 21:28:31] "GET /mmusic/ HTTP/1.1" 200 9609
+[13/May/2014 21:28:45] "GET /static/fonts/k3k702ZOKiLJc3WVjuplzJ1r3JsPcQLi8jytr04NNhU.woff HTTP/1.1" 200 66128
+[13/May/2014 21:31:25] "GET / HTTP/1.1" 200 5933
+[13/May/2014 21:31:28] "GET /mmusic/ HTTP/1.1" 200 9609
+[13/May/2014 21:31:30] "GET / HTTP/1.1" 200 5933
+[13/May/2014 21:31:35] "GET /mmusic/ HTTP/1.1" 200 9609
+[13/May/2014 21:31:35] "GET /mmusic/ HTTP/1.1" 200 9609
+[13/May/2014 21:31:37] "GET / HTTP/1.1" 200 5933
+[13/May/2014 21:31:39] "GET /mmusic/ HTTP/1.1" 200 9609
+[13/May/2014 21:31:47] "GET / HTTP/1.1" 200 5933

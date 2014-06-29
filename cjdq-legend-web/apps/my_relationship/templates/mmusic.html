@@ -1,0 +1,94 @@
+{% extends "metro-base.html" %}
+
+{% block title %}主页{% endblock %}
+
+{% block head %}主页{% endblock %}
+
+{% block content %}
+<h1 style="color:white;margin-left:5%">
+    <a href="/"><i class="icon-arrow-left-3 smaller"></i></a>
+    My Music<small class="on-right">我的音乐</small>
+</h1>
+<br/>
+
+
+<div class="tab-control" data-role="tab-control">
+                <ul class="tabs">
+                    <li class="active" ><a href="#page_1"><h2><i class="icon-mic"></i>我的翻唱</h2></a></li>
+                    <li><a href="#page_2"><h2><i class="icon-music"></i>音乐盒子</h2></a></li>
+                    <li><a href="#page_3"><h2><i class="icon-mic"></i></h2></a></li>
+                    <li class="place-right"><a href="#page_5"><h2><i class="icon-heart"></i></h2></a></li>
+                    <li class="place-right"><a href="#page_4"><h2><i class="icon-cog"></i></h2></a></li>
+                </ul>
+
+                <div class="frames">
+                    <div class="frame" id="page_1" style="display: block; ">
+                        <div class="accordion" data-role="accordion">
+                            <div class="accordion-frame">
+                                <a href="#" class="heading">Frame heading</a>
+                                <div class="content">
+                                    <h2 style="color:white">Test 1</h2>
+                                    <a class="tile bg-darkGreen half" data-click="transform">
+                                        <img src="/static/img/photomini.jpg" data-src="js/holder/holder.js/60x60" alt="60x60" style="width: 60px; height: 60px; "/>
+                                    </a>
+                                    <object type="application/x-shockwave-flash" data="/static/dewplayer/dewplayer-bubble.swf?mp3=/static/dewplayer/mp3/test.mp3" width="400" height="200" id="dewplayer"><param name="wmode" value="transparent" /><param name="movie" value="/static/dewplayer/dewplayer.swf?mp3=/static/dewplayer/mp3/test.mp3" /></object>
+                                </div>
+                            </div>
+                         
+                            <div class="accordion-frame">
+                                <a href="#" class="active heading">Frame heading</a>
+                                <div class="content">
+                                    <h2 style="color:white">Test 1</h2>
+                                    <a class="tile bg-darkGreen half" data-click="transform">
+                                        <img src="/static/img/photomini.jpg" data-src="js/holder/holder.js/60x60" alt="60x60" style="width: 60px; height: 60px; "/>
+                                    </a>
+                                    <object type="application/x-shockwave-flash" data="/static/dewplayer/dewplayer-bubble.swf?mp3=/static/dewplayer/mp3/test.mp3" width="400" height="200" id="dewplayer"><param name="wmode" value="transparent" /><param name="movie" value="/static/dewplayer/dewplayer.swf?mp3=/static/dewplayer/mp3/test.mp3" /></object>
+                                </div>
+                            </div>
+                            
+                            <div class="accordion-frame" onmouseover="">
+                                <a href="#" class="heading">Frame heading</a>
+                                <div class="content">
+                                    <h2 style="color:white">Test 1</h2>
+                                    <a class="tile bg-darkGreen half" data-click="transform">
+                                        <img src="/static/img/photomini.jpg" data-src="js/holder/holder.js/60x60" alt="60x60" style="width: 60px; height: 60px; "/>
+                                    </a>
+                                    <object type="application/x-shockwave-flash" data="/static/dewplayer/dewplayer-bubble.swf?mp3=/static/dewplayer/mp3/test.mp3" width="400" height="200" id="dewplayer"><param name="wmode" value="transparent" /><param name="movie" value="/static/dewplayer/dewplayer.swf?mp3=/static/dewplayer/mp3/test.mp3" /></object>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+
+                
+                    </div>
+                    <div class="frame" id="page_2" style="display: none; ">
+                        <div id="content">
+
+  <h1>test</h1>
+
+    <object type="application/x-shockwave-flash" data="/static/dewplayer/dewplayer-playlist.swf" width="240" height="200" id="dewplayer" name="dewplayer">
+                            <param name="wmode" value="transparent" />
+                            <param name="movie" value="/static/dewplayer/dewplayer-playlist.swf" />
+                            <param name="flashvars" value="showtime=true&autoreplay=true&xml=/static/dewplayer/playlist.xml" />
+                        </object>
+    
+</div>
+
+
+                        
+                    </div>
+                    <div class="frame" id="page_3" style="display: none; ">
+                        <p>Rocket Tab</p>
+                    </div>
+                    <div class="frame" id="page_4" style="display: none; ">
+                        <p>This tab placed right</p>
+                    </div>
+                    <div class="frame" id="page_5" style="display: none; ">
+                        <p>This tab also placed right</p>
+                    </div>
+                </div>
+
+            </div>
+
+{% endblock %}

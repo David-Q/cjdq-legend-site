@@ -116,7 +116,8 @@ TEMPLATE_DIRS = (
 
 
 INSTALLED_APPS = (
-    'apps.project_make',
+    'apps.home',
+    'apps.my_blog',
     'apps.my_music',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
